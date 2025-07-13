@@ -1,0 +1,444 @@
+{
+  "forums": [
+    {
+      "id": 1,
+      "name": "Way - First",
+      "url": "https://rcway.at",
+      "screenshot": "/images/rcway.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["marketplace", "chatroom"]
+    },
+    {
+      "id": 2,
+      "name": "ShadowCarders",
+      "url": "https://shadowcarders.com",
+      "screenshot": "/images/shadowcarders.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 3,
+      "name": "Spyhackerz",
+      "url": "https://spyhackerz.org/forum/",
+      "screenshot": "/images/spyhackerz.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general", "marketplace", "leaks"]
+    },
+    {
+      "id": 4,
+      "name": "Tenec",
+      "url": "https://tenec.link",
+      "screenshot": "/images/tenec.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 5,
+      "name": "DarkMoney",
+      "url": "https://darkmoney.ag",
+      "screenshot": "/images/darkmoney.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 6,
+      "name": "Wayaway",
+      "url": "https://wayaway.at",
+      "screenshot": "/images/wayaway.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["carding", "marketplace"]
+    },
+    {
+      "id": 7,
+      "name": "WWH-Club",
+      "url": "https://wwh-club.to",
+      "screenshot": "/images/wwh-club.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 8,
+      "name": "BlackHatWorld",
+      "url": "https://www.blackhatworld.com",
+      "screenshot": "/images/blackhatworld.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 9,
+      "name": "Romhacking",
+      "url": "https://www.romhacking.net/forum",
+      "screenshot": "/images/romhacking.png",
+      "contributor": "Amjad Ali",
+      "dateAdded": "2025-06-19",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 10,
+      "name": "TurkHackTeam",
+      "url": "https://www.turkhackteam.org",
+      "screenshot": "/images/turkhackteam.png",
+      "contributor": "Asim",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 11,
+      "name": "BDF Club",
+      "url": "https://bdfclub.com",
+      "screenshot": "/images/bdfclub.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["marketplace", "carding"]
+    },
+    {
+      "id": 12,
+      "name": "Carding.Store",
+      "url": "https://carding.store",
+      "screenshot": "/images/carding.store.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["marketplace", "carding"]
+    },
+    {
+      "id": 13,
+      "name": "Carding Mafia",
+      "url": "https://cardmafia.cc",
+      "screenshot": "/images/cardmafia.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 14,
+      "name": "Card Villa",
+      "url": "https://cardvilla.cc",
+      "screenshot": "/images/cardvilla.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 15,
+      "name": "LeakZone",
+      "url": "https://leakzone.net",
+      "screenshot": "/images/leakzone.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","marketplace","leaks", "chatroom"]
+    },
+    {
+      "id": 16,
+      "name": "Legit Carders",
+      "url": "https://legitcarders.ws",
+      "screenshot": "/images/legitcarders.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 17,
+      "name": "Niflheim.World",
+      "url": "https://niflheim.world",
+      "screenshot": "/images/niflheim.world.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","marketplace"]
+    },
+    {
+      "id": 18,
+      "name": "NoHide",
+      "url": "https://nohide.space",
+      "screenshot": "/images/nohide.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","marketplace"]
+    },
+    {
+      "id": 19,
+      "name": "Nulledbb",
+      "url": "https://nulledbb.com",
+      "screenshot": "/images/nulledbb.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","marketplace","leaks"]
+    },
+    {
+      "id": 20,
+      "name": "Ownzyou",
+      "url": "https://ownzyou.com/forum",
+      "screenshot": "/images/ownzyou.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","leaks", "chatroom"]
+    },
+    {
+      "id": 21,
+      "name": "phish.is",
+      "url": "https://phish.is",
+      "screenshot": "/images/phish.is.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 22,
+      "name": "Pirate Buhta.biz",
+      "url": "https://piratebuhta.biz",
+      "screenshot": "/images/piratebuhta.biz.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general","marketplace"]
+    },
+    {
+      "id": 23,
+      "name": "RC Club",
+      "url": "https://rcclub.com",
+      "screenshot": "/images/rcclub.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["marketplace"]
+    },
+    {
+      "id": 24,
+      "name": "Hack Forums",
+      "url": "https://hackforums.net",
+      "screenshot": "/images/rcclub.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 25,
+      "name": "XenForo",
+      "url": "https://xnforo.ir",
+      "screenshot": "/images/xnforo.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["community"]
+    },
+    {
+      "id": 26,
+      "name": "xReactor",
+      "url": "https://xreactor.org",
+      "screenshot": "/images/xreactor.png",
+      "contributor": "Yash Grover",
+      "dateAdded": "2025-06-25",
+      "published": true,
+      "tags": ["general", "marketplace", "leaks", "cracking"]
+    },
+    {
+      "id": 27,
+      "name": "Crackia",
+      "url": "https://crackia.com",
+      "screenshot": "/images/crackia.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 28,
+      "name": "CrackingX",
+      "url": "https://crackingx.com",
+      "screenshot": "/images/crackingx.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["cracking", "marketplace"]
+    },
+    {
+      "id": 29,
+      "name": "CrdCrew",
+      "url": "https://crdcrew.cc",
+      "screenshot": "/images/crdcrew.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 30,
+      "name": "CrdPro",
+      "url": "https://crdpro.cc",
+      "screenshot": "/images/crdpro.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["marketplace", "carding"]
+    },
+    {
+      "id": 31,
+      "name": "DarkForums",
+      "url": "https://darkforums.st",
+      "screenshot": "/images/darkforums.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "marketplace", "leaks", "cracking"]
+    },
+    {
+      "id": 32,
+      "name": "DarkMarket",
+      "url": "https://darkmarket.sx",
+      "screenshot": "/images/darkmarket.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["marketplace"]
+    },
+    {
+      "id": 33,
+      "name": "DarkNet Army",
+      "url": "https://darknetarmy.com",
+      "screenshot": "/images/darknetarmy.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["marketplace"]
+    },
+    {
+      "id": 34,
+      "name": "TorTails",
+      "url": "https://tortails.net",
+      "screenshot": "/images/tortails.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["marketplace"]
+    },
+    {
+      "id": 35,
+      "name": "Darkpro",
+      "url": "https://darkpro.net",
+      "screenshot": "/images/darkpro.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 36,
+      "name": "DarkSeller",
+      "url": "https://darkseller.org",
+      "screenshot": "/images/darkseller.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["marketplace"]
+    },
+    {
+      "id": 37,
+      "name": "Demon Forums",
+      "url": "https://demonforums.net",
+      "screenshot": "/images/demonforums.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "cracking", "leaks", "marketplace"]
+    },
+    {
+      "id": 38,
+      "name": "DRCrypter",
+      "url": "https://drcrypter.ru",
+      "screenshot": "/images/drcrypter.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "cracking", "leaks", "marketplace"]
+    },
+    {
+      "id": 39,
+      "name": "DUTY-FREE.CC",
+      "url": "https://forum.duty-free.cc",
+      "screenshot": "/images/forum-duty-free.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["cracking"]
+    },
+    {
+      "id": 40,
+      "name": "Gerki",
+      "url": "https://main.gerki.in",
+      "screenshot": "/images/main-gerki.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 41,
+      "name": "HARD-TM",
+      "url": "https://hard-tm.su",
+      "screenshot": "/images/hard-tm.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general"]
+    },
+    {
+      "id": 42,
+      "name": "Hack Tools Dark",
+      "url": "https://htdark.com",
+      "screenshot": "/images/htdark.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "cracking"]
+    },
+    {
+      "id": 43,
+      "name": "IN4Bz",
+      "url": "https://in4.bz",
+      "screenshot": "/images/in4.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 44,
+      "name": "LeakBase",
+      "url": "https://leakbase.la",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Ranjan Kumar",
+      "dateAdded": "2025-07-13",
+      "published": true,
+      "tags": ["leaks"]
+    }
+  ]
+}
