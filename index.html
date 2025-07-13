@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forums Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0e17;
+            color: #00ff41;
+        }
+
+        .title-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glow {
+            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+        }
+
+        .card {
+            background: rgba(16, 23, 36, 0.8);
+            border: 1px solid #1e3a5f;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.07;
+        }
+
+        .screenshot {
+            border: 2px solid #1e3a5f;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot:hover {
+            border-color: #00ff41;
+        }
+
+        /* Custom scrollbar */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a5f;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff41;
+        }
+
+        .modal {
+            background-color: rgba(10, 14, 23, 0.95);
+            border: 1px solid #1e3a5f;
+        }
+
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from,
+            to {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .grid-pattern {
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(16, 23, 36, 0.95);
+            border: 1px solid #1e3a5f;
+            padding: 12px 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen grid-pattern">
+    <!-- Matrix background effect -->
+    <canvas id="matrix" class="matrix-bg"></canvas>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle text-[#00ff41] mr-3"></i>
+            <span id="notificationText"></span>
+        </div>
+    </div>
+
+    <div class="flex">
+        <!-- Main Content -->
+        <div class="w-full" id="mainContent">
+            <!-- Header -->
+            <header class="py-6 px-4 border-b border-[#1e3a5f]">
+                <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <i class="fas fa-shield-alt text-3xl mr-3 text-[#00ff41]"></i>
+                        <h1 class="text-3xl md:text-4xl font-bold title-font glow">Hacking Forums Bank</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search forums..." class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full md:w-64">
+                            <i class="fas fa-search absolute right-3 top-3 text-[#1e3a5f]"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Client View -->
+            <div id="clientContent">
+                <!-- Main content -->
+                <main class="container mx-auto py-8 px-4">
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="card p-6 rounded-lg cursor-pointer hover:bg-[#1a2a3a] transition-colors duration-300" id="totalForumsCard">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-[#8a9cbc] text-sm">Total Forums</p>
+                                    <h3 class="text-3xl font-bold" id="clientTotalForums">0</h3>
+                                    <p class="text-[#00ff41] text-xs mt-1">>> Get Forums List</p>
+                                </div>
+                                <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                    <i class="fas fa-server text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg cursor-pointer hover:bg-[#1a2a3a] transition-colors duration-300" id="contributorsCard">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-[#8a9cbc] text-sm">Contributors</p>
+                                    <h3 class="text-3xl font-bold" id="clientTotalContributors">0</h3>
+                                    <p class="text-[#00ff41] text-xs mt-1">>> See Contributors</p>
+                                </div>
+                                <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                    <i class="fas fa-users text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-[#8a9cbc] text-sm">Last Updated</p>
+                                    <h3 class="text-lg font-bold" id="clientLastUpdated">Today</h3>
+                                </div>
+                                <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forums list -->
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
+                            <i class="fas fa-list-alt mr-3"></i>
+                            <span class="typing-effect" id="sectionTitle">Hacking Forums Database</span>
+                        </h2>
+
+                        <!-- Tag Filter Dropdown -->
+                        <div class="mb-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
+                                <label for="tagFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Filter by Tag:</label>
+                                <select id="tagFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
+                                <label for="sortFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Sort by:</label>
+                                <select id="sortFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                    <option value="">Default</option>
+                                    <option value="a-z">A-Z</option>
+                                    <option value="z-a">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="forumsContainer">
+                            <!-- Forum cards will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Footer -->
+                <footer class="border-t border-[#1e3a5f] py-6 px-4">
+                    <div class="container mx-auto text-center text-[#8a9cbc]">
+                        <p id="footerTextDisplay">Created by <a href="http://linkedin.com/in/amjadali110/" target="_blank" style="color: #6acf83; font-weight: bold;"> Amjad Ali </a></p>
+                        <p class="text-sm mt-2">For educational and ethical hacking purposes only</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Forum Modal (Client Side) -->
+    <div id="viewForumModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="absolute inset-0 bg-black opacity-70" id="viewModalOverlay"></div>
+        <div class="modal relative w-full max-w-3xl p-6 rounded-lg z-10 max-h-[90vh] overflow-y-auto">
+            <button id="closeViewModal" class="absolute top-4 right-4 text-[#8a9cbc] hover:text-[#00ff41]">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold title-font mb-2" id="viewForumName"></h3>
+            <p class="text-[#8a9cbc] mb-4" id="viewForumUrl"></p>
+
+            <div class="mb-6">
+                <img id="viewForumScreenshot" class="w-full h-auto rounded-lg screenshot mb-4" src="" alt="Forum Screenshot">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-user-circle text-2xl mr-2 text-[#8a9cbc]"></i>
+                    <div>
+                        <p class="text-sm text-[#8a9cbc]">Added by</p>
+                        <p id="viewForumContributor" class="font-bold"></p>
+                    </div>
+                </div>
+                <a id="visitForumBtn" href="#" target="_blank" class="btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-4 py-2 rounded-md">
+                    <i class="fas fa-external-link-alt mr-2"></i> Visit Forum
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let forums = [];
+        let selectedTag = '';
+        let selectedSort = '';
+
+        // DOM Elements
+        const clientContent = document.getElementById('clientContent');
+        const viewForumModal = document.getElementById('viewForumModal');
+        const searchInput = document.getElementById('searchInput');
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch forums data
+            const data = await fetchForumsData();
+            forums = data.forums;
+
+            // Populate tag filter
+            populateTagFilter();
+
+            // Render client forums
+            renderClientForums();
+
+            // Initialize matrix background
+            initMatrix();
+
+            // Initialize typing effect
+            initTypingEffect();
+
+            // Add event listeners
+            setupEventListeners();
+        });
+
+        // Fetch forums data from data.json
+        async function fetchForumsData() {
+            try {
+                // Fetch data from data.json file
+                const response = await fetch('data.json');
+
+                // Check if the fetch was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching forums data:', error);
+
+                // Return empty forums array if fetch fails
+                return {
+                    forums: []
+                };
+            }
+        }
+
+        // Populate tag filter dropdown
+        function populateTagFilter() {
+            const tagFilter = document.getElementById('tagFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            
+            if (!tagFilter) return;
+            
+            // Get all unique tags from forums
+            const allTags = Array.from(new Set(forums.flatMap(f => f.tags || [])));
+            allTags.sort();
+            allTags.forEach(tag => {
+                const option = document.createElement('option');
+                option.value = tag;
+                option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+                tagFilter.appendChild(option);
+            });
+            
+            // Add event listeners
+            tagFilter.addEventListener('change', (e) => {
+                selectedTag = e.target.value;
+                renderClientForums();
+            });
+            
+            sortFilter.addEventListener('change', (e) => {
+                selectedSort = e.target.value;
+                renderClientForums();
+            });
+        }
+
+        // Function to render forum cards (client side)
+        function renderClientForums() {
+            const container = document.getElementById('forumsContainer');
+            container.innerHTML = '';
+
+            // Filter only published forums for client view
+            let publishedForums = forums.filter(forum => forum.published);
+            
+            // Filter by selected tag if any
+            if (selectedTag) {
+                publishedForums = publishedForums.filter(forum => (forum.tags || []).includes(selectedTag));
+            }
+            
+            // Sort forums based on selected sort option
+            if (selectedSort === 'a-z') {
+                publishedForums.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (selectedSort === 'z-a') {
+                publishedForums.sort((a, b) => b.name.localeCompare(a.name));
+            }
+
+            if (publishedForums.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <i class="fas fa-search text-4xl text-[#1e3a5f] mb-4"></i>
+                        <p class="text-[#8a9cbc]">No forums found matching your search criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            publishedForums.forEach(forum => {
+                const card = document.createElement('div');
+                card.className = 'card rounded-lg overflow-hidden';
+                card.innerHTML = `
+                    <div class="h-40 overflow-hidden">
+                        <img src="${forum.screenshot}" alt="${forum.name}" class="w-full h-full object-cover screenshot">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">${forum.name}</h3>
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            ${(forum.tags || []).map(tag => `<span class='inline-block bg-[#1e3a5f] text-[#00ff41] text-xs px-2 py-1 rounded-full border border-[#00ff41]'>${tag}</span>`).join(' ')}
+                        </div>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-circle text-[#8a9cbc] mr-2"></i>
+                                <span class="text-sm text-[#8a9cbc]">${forum.contributor}</span>
+                            </div>
+                            <button class="view-forum-btn btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-4 py-2 rounded-md text-sm" data-id="${forum.id}">
+                                <i class="fas fa-eye mr-1"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Add event listener to view button
+                card.querySelector('.view-forum-btn').addEventListener('click', () => {
+                    openClientViewModal(forum.id);
+                });
+            });
+
+            // Update stats
+            document.getElementById('clientTotalForums').textContent = publishedForums.length;
+
+            // Count unique contributors
+            const uniqueContributors = [...new Set(publishedForums.map(forum => forum.contributor))];
+            document.getElementById('clientTotalContributors').textContent = uniqueContributors.length;
+
+            // Set last updated date
+            // const lastUpdated = new Date().toLocaleDateString('en-US', {
+            //     year: 'numeric',
+            //     month: 'short',
+            //     day: 'numeric',
+            //     hour: "numeric",
+            //     minute: "numeric",
+            //     second: "numeric"
+            // });
+
+            let lastUpdated = "";
+
+            forums.forEach((forum)=>{
+                lastUpdated = lastUpdated < forum.dateAdded ? forum.dateAdded : lastUpdated;
+            });
+
+            document.getElementById('clientLastUpdated').textContent = lastUpdated;
+        }
+
+        // Function to open client view modal
+        function openClientViewModal(forumId) {
+            const forum = forums.find(f => f.id === forumId);
+            if (!forum) return;
+
+            document.getElementById('viewForumName').textContent = forum.name;
+            document.getElementById('viewForumUrl').textContent = forum.url;
+            document.getElementById('viewForumScreenshot').src = forum.screenshot;
+            document.getElementById('viewForumContributor').textContent = forum.contributor;
+
+            // Set the visit forum button URL
+            const visitForumBtn = document.getElementById('visitForumBtn');
+            visitForumBtn.href = forum.url;
+
+            // Show the modal
+            viewForumModal.classList.remove('hidden');
+        }
+
+        // Function to setup event listeners
+        function setupEventListeners() {
+            // Close view modal
+            document.getElementById('closeViewModal').addEventListener('click', () => {
+                viewForumModal.classList.add('hidden');
+            });
+
+            document.getElementById('viewModalOverlay').addEventListener('click', () => {
+                viewForumModal.classList.add('hidden');
+            });
+
+            // Total Forums card click - redirect to GitHub data.json
+            document.getElementById('totalForumsCard').addEventListener('click', () => {
+                window.open('https://github.com/amjadali-110/forums-bank/blob/main/data.json', '_blank');
+            });
+
+            // Contributors card click - redirect to contributors page
+            document.getElementById('contributorsCard').addEventListener('click', () => {
+                window.location.href = 'contributors.html';
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                if (searchTerm.length > 0) {
+                    const filteredForums = forums.filter(forum =>
+                        forum.published && (
+                            forum.name.toLowerCase().includes(searchTerm) ||
+                            forum.url.toLowerCase().includes(searchTerm) ||
+                            forum.contributor.toLowerCase().includes(searchTerm)
+                        )
+                    );
+
+                    // Update forums array temporarily for rendering
+                    const originalForums = [...forums];
+                    forums = filteredForums;
+                    renderClientForums();
+                    forums = originalForums; // Restore original forums
+                } else {
+                    renderClientForums();
+                }
+            });
+        }
+
+        // Function to initialize matrix background
+        function initMatrix() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const characters = "01";
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+
+            function draw() {
+                ctx.fillStyle = "rgba(10, 14, 23, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = "#00ff41";
+                ctx.font = fontSize + "px monospace";
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 35);
+
+            // Resize canvas when window is resized
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Function to initialize typing effect
+        function initTypingEffect() {
+            const sectionTitle = document.getElementById('sectionTitle');
+            const text = sectionTitle.textContent;
+            sectionTitle.textContent = '';
+
+            let i = 0;
+            const typingSpeed = 100;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    sectionTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, typingSpeed);
+                }
+            }
+
+            setTimeout(typeWriter, 500);
+        }
+
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+
+            notificationText.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Function to show image data modal
+        function showImageDataModal(imageDataUrl, screenshotName, githubIssueUrl) {
+            const modalContent = document.getElementById('imageModalContent');
+            modalContent.innerHTML = `
+                <h3 class="text-2xl font-bold title-font mb-4">Image Data for ${screenshotName}</h3>
+                <div class="mb-6">
+                    <img src="${imageDataUrl}" alt="Forum Screenshot" class="w-full h-auto rounded-lg screenshot mb-4 max-h-96 object-contain">
+                </div>
+                <div class="mb-6">
+                    <p class="text-[#8a9cbc] mb-3">Copy this image data and paste it into your GitHub issue:</p>
+                    <div class="bg-[#0a0e17] border border-[#1e3a5f] p-4 rounded-md">
+                        <code class="text-[#00ff41] text-sm break-all">![${screenshotName}](${imageDataUrl})</code>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <a href="${githubIssueUrl}" target="_blank" class="btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-6 py-3 rounded-md text-lg">
+                        <i class="fas fa-external-link-alt mr-2"></i> Open GitHub Issue
+                    </a>
+                </div>
+            `;
+            document.getElementById('imageDataModal').classList.remove('hidden');
+        }
+    </script>
+    <script>
+        (function() {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement('script');
+                    d.innerHTML = "window.__CF$cv$params={r:'9488ae7ba4d07938',t:'MTc0ODcxNzY4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName('head')[0].appendChild(d)
+                }
+            }
+            if (document.body) {
+                var a = document.createElement('iframe');
+                a.height = 1;
+                a.width = 1;
+                a.style.position = 'absolute';
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = 'none';
+                a.style.visibility = 'hidden';
+                document.body.appendChild(a);
+                if ('loading' !== document.readyState) c();
+                else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+                else {
+                    var e = document.onreadystatechange || function() {};
+                    document.onreadystatechange = function(b) {
+                        e(b);
+                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                    }
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributors - Hacking Forums Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0e17;
+            color: #00ff41;
+        }
+
+        .title-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glow {
+            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+        }
+
+        .card {
+            background: rgba(16, 23, 36, 0.8);
+            border: 1px solid #1e3a5f;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.07;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a5f;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff41;
+        }
+
+        .grid-pattern {
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from,
+            to {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Custom checkbox styling */
+        .forum-category-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #1e3a5f;
+            border-radius: 3px;
+            background-color: #0a0e17;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .forum-category-checkbox:checked {
+            background-color: #00ff41;
+            border-color: #00ff41;
+        }
+
+        .forum-category-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 1px;
+            color: #0a0e17;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .forum-category-checkbox:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+        }
+
+        .forum-category-checkbox:focus {
+            outline: none;
+            border-color: #00ff41;
+            box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+        }
+
+        /* Make image modal more solid */
+        #imageDataModal .modal {
+            background: rgba(10, 14, 23, 0.98) !important;
+            border: 1px solid #1e3a5f;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen grid-pattern">
+    <!-- Matrix background effect -->
+    <canvas id="matrix" class="matrix-bg"></canvas>
+
+    <div class="flex">
+        <!-- Main Content -->
+        <div class="w-full">
+            <!-- Header -->
+            <header class="py-6 px-4 border-b border-[#1e3a5f]">
+                <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                            <i class="fas fa-arrow-left text-2xl mr-3 text-[#00ff41]"></i>
+                            <i class="fas fa-shield-alt text-3xl mr-3 text-[#00ff41]"></i>
+                            <h1 class="text-3xl md:text-4xl font-bold title-font glow">Contributors</h1>
+                        </a>
+                    </div>
+                    <div class="flex items-center space-x-4 hidden md:block">
+                        <div class="text-right">
+                            <p class="text-[#8a9cbc] text-sm">Total Contributors</p>
+                            <h3 class="text-2xl font-bold" id="totalContributors">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main class="container mx-auto py-8 px-4">
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-[#8a9cbc] text-sm">Total Contributors</p>
+                                <h3 class="text-3xl font-bold" id="statsTotalContributors">0</h3>
+                            </div>
+                            <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-[#8a9cbc] text-sm">Total Forums</p>
+                                <h3 class="text-3xl font-bold" id="statsTotalForums">0</h3>
+                            </div>
+                            <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                <i class="fas fa-server text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-[#8a9cbc] text-sm">Top Contributor</p>
+                                <h3 class="text-lg font-bold" id="topContributor">-</h3>
+                            </div>
+                            <div class="bg-[#1e3a5f] p-3 rounded-full">
+                                <i class="fas fa-trophy text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contributors list -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
+                        <i class="fas fa-users mr-3"></i>
+                        <span class="typing-effect" id="sectionTitle">Our Amazing Contributors</span>
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="contributorsContainer">
+                        <!-- Contributor cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Contribute a Forum Section -->
+                <div class="mb-12 mt-12 max-w-2xl mx-auto card p-8 rounded-lg">
+                    <h2 class="text-xl font-bold title-font mb-4 flex items-center">
+                        <i class="fas fa-plus-circle mr-2"></i>
+                        Contribute a Forum
+                    </h2>
+                    <form id="contributeForm" class="space-y-4">
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="forumName">Forum Name</label>
+                            <input type="text" id="forumName" name="forumName" required class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="forumUrl">Forum URL</label>
+                            <input type="url" id="forumUrl" name="forumUrl" required class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="forumCategory">Forum Category (Tags)</label>
+                            <div class="space-y-2">
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="general" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">General</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="marketplace" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Marketplace</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="carding" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Carding</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="cracking" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Cracking</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="leaks" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Leaks</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="chatroom" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Chatroom</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" value="community" class="forum-category-checkbox bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] rounded focus:outline-none focus:border-[#00ff41]">
+                                        <span class="text-[#00ff41] text-sm">Community</span>
+                                    </label>
+                                </div>
+                                <p class="text-xs text-[#8a9cbc]">Select one or more categories that best describe the forum</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="contributorName">Contributor Name</label>
+                            <input type="text" id="contributorName" name="contributorName" required class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="socialMediaProfile">Contributor Social Media Profile (Optional)</label>
+                            <input type="url" id="socialMediaProfile" name="socialMediaProfile" placeholder="https://twitter.com/yourusername or https://linkedin.com/in/yourprofile" class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
+                            <p class="text-xs text-[#8a9cbc] mt-1">Share your social media profile if you want to be credited publicly</p>
+                        </div>
+                        <button type="submit" class="btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-6 py-2 rounded-md font-bold">
+                            <i class="fas fa-paper-plane mr-2"></i>Submit Forum
+                        </button>
+                    </form>
+                    <div id="contributeThanks" class="hidden mt-6 text-[#00ff41] font-bold text-center"></div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="border-t border-[#1e3a5f] py-6 px-4">
+                <div class="container mx-auto text-center text-[#8a9cbc]">
+                    <p>Created by <a href="http://linkedin.com/in/amjadali110/" target="_blank" style="color: #6acf83; font-weight: bold;"> Amjad Ali</a></p>
+                    <p class="text-sm mt-2">For educational and ethical hacking purposes only</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Image Data Modal -->
+    <div id="imageDataModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="absolute inset-0 bg-black opacity-70" id="imageModalOverlay"></div>
+        <div class="modal relative w-full max-w-4xl p-6 rounded-lg z-10 max-h-[90vh] overflow-y-auto">
+            <button id="closeImageModal" class="absolute top-4 right-4 text-[#8a9cbc] hover:text-[#00ff41]">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div id="imageModalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let forums = [];
+        let contributors = [];
+        let contributorsData = [];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch forums data
+            const data = await fetchForumsData();
+            forums = data.forums;
+
+            // Fetch contributors data
+            const contributorsResponse = await fetchContributorsData();
+            contributorsData = contributorsResponse.contributors;
+
+            // Process contributors data
+            processContributorsData();
+
+            // Render contributors
+            renderContributors();
+
+            // Initialize matrix background
+            initMatrix();
+
+            // Initialize typing effect
+            initTypingEffect();
+
+            // Add event listeners
+            setupEventListeners();
+        });
+
+        // Fetch forums data from data.json
+        async function fetchForumsData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching forums data:', error);
+                return { forums: [] };
+            }
+        }
+
+        // Fetch contributors data from contributors-data.json
+        async function fetchContributorsData() {
+            try {
+                const response = await fetch('contributors-data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching contributors data:', error);
+                return { contributors: [] };
+            }
+        }
+
+        // Process contributors data from forums
+        function processContributorsData() {
+            const contributorCounts = {};
+            
+            // Count contributions for each contributor
+            forums.forEach(forum => {
+                if (forum.published && forum.contributor) {
+                    contributorCounts[forum.contributor] = (contributorCounts[forum.contributor] || 0) + 1;
+                }
+            });
+
+            // Convert to array and sort by contribution count
+            contributors = Object.entries(contributorCounts)
+                .map(([name, count]) => ({ name, count }))
+                .sort((a, b) => b.count - a.count);
+        }
+
+        // Function to render contributor cards
+        function renderContributors() {
+            const container = document.getElementById('contributorsContainer');
+            container.innerHTML = '';
+
+            if (contributors.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <i class="fas fa-users text-4xl text-[#1e3a5f] mb-4"></i>
+                        <p class="text-[#8a9cbc]">No contributors found.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            contributors.forEach((contributor, index) => {
+                const card = document.createElement('div');
+                card.className = 'card rounded-lg overflow-hidden';
+                
+                // Add special styling for top contributors
+                const isTop3 = index < 3;
+                const rankClass = isTop3 ? 'border-[#00ff41]' : '';
+                const rankIcon = index === 0 ? 'fas fa-crown text-yellow-400' : 
+                                index === 1 ? 'fas fa-medal text-gray-300' : 
+                                index === 2 ? 'fas fa-medal text-orange-400' : '';
+
+                // Find social media data for this contributor
+                const contributorData = contributorsData.find(c => c.name === contributor.name);
+                const socialMedia = contributorData ? contributorData.socialMedia : null;
+
+                // Generate social media icons
+                let socialMediaHtml = '';
+                if (socialMedia) {
+                    socialMediaHtml = '<div class="flex space-x-2 mt-3">';
+                    if (socialMedia.github) {
+                        socialMediaHtml += `<a href="${socialMedia.github}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="GitHub"><i class="fab fa-github text-lg"></i></a>`;
+                    }
+                    if (socialMedia.linkedin) {
+                        socialMediaHtml += `<a href="${socialMedia.linkedin}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="LinkedIn"><i class="fab fa-linkedin text-lg"></i></a>`;
+                    }
+                    if (socialMedia.youtube) {
+                        socialMediaHtml += `<a href="${socialMedia.youtube}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="YouTube"><i class="fab fa-youtube text-lg"></i></a>`;
+                    }
+                    if (socialMedia.website) {
+                        socialMediaHtml += `<a href="${socialMedia.website}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Website"><i class="fas fa-globe text-lg"></i></a>`;
+                    }
+                    if (socialMedia.twitter) {
+                        socialMediaHtml += `<a href="${socialMedia.twitter}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Twitter"><i class="fab fa-twitter text-lg"></i></a>`;
+                    }
+                    if (socialMedia.instagram) {
+                        socialMediaHtml += `<a href="${socialMedia.instagram}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Instagram"><i class="fab fa-instagram text-lg"></i></a>`;
+                    }
+                    socialMediaHtml += '</div>';
+                }
+
+                card.innerHTML = `
+                    <div class="p-6 ${rankClass}">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="bg-[#1e3a5f] p-3 rounded-full mr-4">
+                                    <i class="fas fa-user-circle text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold">${contributor.name}</h3>
+                                    <p class="text-[#8a9cbc] text-sm">Contributor</p>
+                                </div>
+                            </div>
+                            ${rankIcon ? `<i class="${rankIcon} text-2xl"></i>` : ''}
+                        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <p class="text-[#8a9cbc] text-sm">Forums Added</p>
+                                <h4 class="text-2xl font-bold text-[#00ff41]">${contributor.count}</h4>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[#8a9cbc] text-sm">Rank</p>
+                                <h4 class="text-lg font-bold">#${index + 1}</h4>
+                            </div>
+                        </div>
+                        ${socialMediaHtml}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Update stats
+            updateStats();
+        }
+
+        // Function to update statistics
+        function updateStats() {
+            const totalContributors = contributors.length;
+            const totalForums = forums.filter(forum => forum.published).length;
+            const topContributor = contributors.length > 0 ? contributors[0].name : '-';
+
+            document.getElementById('totalContributors').textContent = totalContributors;
+            document.getElementById('statsTotalContributors').textContent = totalContributors;
+            document.getElementById('statsTotalForums').textContent = totalForums;
+            document.getElementById('topContributor').textContent = topContributor;
+        }
+
+        // Function to initialize matrix background
+        function initMatrix() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const characters = "01";
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+
+            function draw() {
+                ctx.fillStyle = "rgba(10, 14, 23, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = "#00ff41";
+                ctx.font = fontSize + "px monospace";
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 35);
+
+            // Resize canvas when window is resized
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Function to initialize typing effect
+        function initTypingEffect() {
+            const sectionTitle = document.getElementById('sectionTitle');
+            const text = sectionTitle.textContent;
+            sectionTitle.textContent = '';
+
+            let i = 0;
+            const typingSpeed = 100;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    sectionTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, typingSpeed);
+                }
+            }
+
+            setTimeout(typeWriter, 500);
+        }
+
+        // Function to setup event listeners
+        function setupEventListeners() {
+            // Image data modal close events
+            document.getElementById('closeImageModal').addEventListener('click', () => {
+                document.getElementById('imageDataModal').classList.add('hidden');
+            });
+
+            document.getElementById('imageModalOverlay').addEventListener('click', () => {
+                document.getElementById('imageDataModal').classList.add('hidden');
+            });
+
+            // Contribute form submit
+            document.getElementById('contributeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('forumName').value.trim();
+                const url = document.getElementById('forumUrl').value.trim();
+                const contributor = document.getElementById('contributorName').value.trim();
+                const forumCategory = Array.from(document.querySelectorAll('.forum-category-checkbox:checked')).map(checkbox => checkbox.value);
+                const socialMediaProfile = document.getElementById('socialMediaProfile').value.trim();
+                
+                // Build issue body with new fields
+                let issueBody = `**Forum Name:** ${name}\n**Forum URL:** ${url}`;
+                
+                // Add forum categories if selected (right after Forum URL)
+                if (forumCategory.length > 0) {
+                    issueBody += `\n**Forum Categories:** ${forumCategory.join(', ')}`;
+                }
+                
+                // Add contributor information
+                issueBody += `\n**Contributor:** ${contributor}`;
+                
+                // Add social media profile if provided
+                if (socialMediaProfile) {
+                    issueBody += `\n**Contributor Social Media:** ${socialMediaProfile}`;
+                }
+                
+                issueBody += `\n\n**Screenshot:**\nPlease drag and drop your screenshot image here or use the image upload feature in GitHub.\n\n---\n\n**Instructions:**\n1. Drag and drop your screenshot image into this issue description\n2. Or click the image upload button in the GitHub editor\n3. The image will be automatically uploaded and embedded`;
+                
+                // Create GitHub issue
+                const issueTitle = encodeURIComponent(`Forum Contribution: ${name}`);
+                const encodedIssueBody = encodeURIComponent(issueBody);
+                const githubIssueUrl = `https://github.com/amjadali-110/forums-bank/issues/new?title=${issueTitle}&body=${encodedIssueBody}`;
+                
+                // Open GitHub issue directly
+                window.open(githubIssueUrl, '_blank');
+            });
+        }
+
+        // Function to show image instructions modal
+        function showImageInstructionsModal(screenshotName, githubIssueUrl) {
+            const modalContent = document.getElementById('imageModalContent');
+            modalContent.innerHTML = `
+                <h3 class="text-2xl font-bold title-font mb-4">Instructions for Image Upload</h3>
+                <div class="mb-6">
+                    <p class="text-[#8a9cbc] mb-3">Please follow these steps to upload your screenshot:</p>
+                    <ol class="list-decimal list-inside text-[#8a9cbc]">
+                        <li>Drag and drop your screenshot image into this issue description</li>
+                        <li>Or click the image upload button in the GitHub editor</li>
+                        <li>The image will be automatically uploaded and embedded</li>
+                    </ol>
+                </div>
+                <div class="flex justify-center">
+                    <a href="${githubIssueUrl}" target="_blank" class="btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-6 py-3 rounded-md text-lg">
+                        <i class="fas fa-external-link-alt mr-2"></i> Open GitHub Issue
+                    </a>
+                </div>
+            `;
+            document.getElementById('imageDataModal').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html> 
