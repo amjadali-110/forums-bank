@@ -6,8 +6,8 @@
 
 ### **The Ultimate Database of Hacking Forums & Communities**
 
-[![GitHub stars](https://img.shields.io/github/stars/amjadali-110/forums-bank?style=for-the-badge&color=00ff41)](https://github.com/amjadali-110/forums-bank/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/amjadali-110/forums-bank?style=for-the-badge&color=00ff41)](https://github.com/amjadali-110/forums-bank/network)
+[![GitHub stars](https://img.shields.io/github/stars/amjadali-110/forums-bank?style=for-the-badge)](https://github.com/amjadali-110/forums-bank/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/amjadali-110/forums-bank?style=for-the-badge)](https://github.com/amjadali-110/forums-bank/network)
 [![GitHub issues](https://img.shields.io/github/issues/amjadali-110/forums-bank?style=for-the-badge&color=00ff41)](https://github.com/amjadali-110/forums-bank/issues)
 [![GitHub license](https://img.shields.io/github/license/amjadali-110/forums-bank?style=for-the-badge&color=00ff41)](https://github.com/amjadali-110/forums-bank/blob/main/LICENSE)
 
@@ -236,8 +236,8 @@ forums-bank/
 
 ### **🌟 Star this repository if you find it helpful! 🌟**
 
-[![GitHub stars](https://img.shields.io/github/stars/amjadali-110/forums-bank?style=social)](https://github.com/amjadali-110/forums-bank/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/amjadali-110/forums-bank?style=social)](https://github.com/amjadali-110/forums-bank/network)
+[![GitHub stars](https://img.shields.io/github/stars/amjadali-110/forums-bank)](https://github.com/amjadali-110/forums-bank/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/amjadali-110/forums-bank)](https://github.com/amjadali-110/forums-bank/network)
 
 **Made with ❤️ by [Amjad Ali](https://linkedin.com/in/amjadali110)**
 
