@@ -135,7 +135,7 @@ forums-bank/
 
 
 - **Add a New Forum**
-   - Visit the [Contributors Page](https://amjadali-110.github.io/forums-bank/contributors.html)
+   - Visit the [Contributors Page](https://forums-bank.codegrills.com/contributors.html)
    - Fill out the contribution form
    - Submit via GitHub Issues
 
@@ -242,29 +242,3 @@ forums-bank/
 **Made with ❤️ by [Amjad Ali](https://linkedin.com/in/amjadali110)**
 
 </div>
-
----
-
-<style>
-/* Hacking theme animations */
-@keyframes matrix-rain {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41; }
-  50% { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41; }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* Apply animations to elements */
-h1, h2, h3 { animation: glow 2s ease-in-out infinite; }
-.badge { animation: pulse 2s ease-in-out infinite; }
-</style> 
