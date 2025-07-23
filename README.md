@@ -56,7 +56,7 @@ The **Hacking Forums Bank** is your one-stop destination for discovering and exp
 ### **Live Demo**
 <div align="center">
 
-[🌐 **View Live Site**](https://forums-bank.codegrills.com/)
+[🌐 **View Live Site**](https://forums-bank.vercel.app/)
 
 </div>
 
