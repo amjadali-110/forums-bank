@@ -56,7 +56,7 @@ The **Hacking Forums Bank** is your one-stop destination for discovering and exp
 ### **Live Demo**
 <div align="center">
 
-[🌐 **View Live Site**](https://forums-bank.codegrills.com)
+[🌐 **View Live Site**](https://forums-bank.vercel.app)
 
 </div>
 
@@ -135,7 +135,7 @@ forums-bank/
 
 
 - **Add a New Forum**
-   - Visit the [Contributors Page](https://forums-bank.codegrills.com/contributors.html)
+   - Visit the [Contributors Page](https://forums-bank.vercel.app/contributors.html)
    - Fill out the contribution form
    - Submit via GitHub Issues
 
@@ -242,4 +242,5 @@ forums-bank/
 **Made with ❤️ by [Amjad Ali](https://linkedin.com/in/amjadali110)**
 
 </div>
+
 
