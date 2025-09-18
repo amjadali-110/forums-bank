@@ -440,5 +440,77 @@
       "published": true,
       "tags": ["leaks"]
     }
+  ],
+  "darkweb": [
+    {
+      "id": 1,
+      "name": "Best Carding World",
+      "url": "http://bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.onion/",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 2,
+      "name": "CryptBB",
+      "url": "http://cryptbbtg65gibadeeo2awe3j7s6evg7eklserehqr4w4e2bis5tebid.onion/",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 3,
+      "name": "DarkForums",
+      "url": "http://qeei4m7a2tve6ityewnezvcnf647onsqbmdbmlcw4y5pr6uwwfwa35yd.onion/",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["dataleaks", "marketplace"]
+    },
+    {
+      "id": 4,
+      "name": "DarkNet Army",
+      "url": "http://dna777ucpo4unwxrzw5mzs4iqm5qz3uepw3k5mvwbt7tnufryvsgy5yd.onion/",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["cracking", "dataleaks", "carding"]
+    },
+    {
+      "id": 5,
+      "name": "Dread",
+      "url": "https://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["reddit", "discussion"]
+    },
+    {
+      "id": 6,
+      "name": "Exploit.in",
+      "url": "https://exploitivzcm5dawzhe6c32bbylyggbjvh5dyvsvb5lkuz5ptmunkmqd.onion/login/?ref=aHR0cHM6Ly8wMGJhc2Vob3N0MTFCQVNFMjJIT1NUMzNiYXNlaG9zdDQ0Lw==",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["exploit", "marketplace", "dataleaks"]
+    },
+    {
+      "id": 7,
+      "name": "Exploit.in",
+      "url": "https://exploitivzcm5dawzhe6c32bbylyggbjvh5dyvsvb5lkuz5ptmunkmqd.onion/login/?ref=aHR0cHM6Ly8wMGJhc2Vob3N0MTFCQVNFMjJIT1NUMzNiYXNlaG9zdDQ0Lw==",
+      "screenshot": "/images/leakbase.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["exploit", "marketplace", "dataleaks"]
+    }
   ]
 }
