@@ -59,6 +59,16 @@
       "dateAdded": "2025-09-29",
       "published": true,
       "tags": ["hacking", "dataleaks"]
+    },
+    {
+      "id": 7,
+      "name": "NZ Darknet Market Forums",
+      "url": "http://nzdnmfcf2z5pd3vwfyfy3jhwoubv6qnumdglspqhurqnuvr52khatdad.onion/",
+      "screenshot": "/images/dark-web/nzdnmfcf2z5pd3vwfyfy3jhwoubv6qnumdglspqhurqnuvr52khatdad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-29",
+      "published": true,
+      "tags": ["general"]
     }
   ]
 }
