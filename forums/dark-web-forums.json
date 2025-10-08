@@ -1,0 +1,74 @@
+{
+  "dark-web-forums": [
+    {
+      "id": 1,
+      "name": "Best Carding World",
+      "url": "http://bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.onion/",
+      "screenshot": "/images/dark-web/bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["carding"]
+    },
+    {
+      "id": 2,
+      "name": "CryptBB",
+      "url": "http://cryptbbtg65gibadeeo2awe3j7s6evg7eklserehqr4w4e2bis5tebid.onion/",
+      "screenshot": "/images/dark-web/cryptbbtg65gibadeeo2awe3j7s6evg7eklserehqr4w4e2bis5tebid.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["general", "marketplace"]
+    },
+    {
+      "id": 3,
+      "name": "DarkForums",
+      "url": "http://qeei4m7a2tve6ityewnezvcnf647onsqbmdbmlcw4y5pr6uwwfwa35yd.onion/",
+      "screenshot": "/images/dark-web/qeei4m7a2tve6ityewnezvcnf647onsqbmdbmlcw4y5pr6uwwfwa35yd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["dataleaks", "marketplace"]
+    },
+    {
+      "id": 4,
+      "name": "DarkNet Army",
+      "url": "http://dna777ucpo4unwxrzw5mzs4iqm5qz3uepw3k5mvwbt7tnufryvsgy5yd.onion/",
+      "screenshot": "/images/dark-web/dna777ucpo4unwxrzw5mzs4iqm5qz3uepw3k5mvwbt7tnufryvsgy5yd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["cracking", "dataleaks", "carding"]
+    },
+    {
+      "id": 5,
+      "name": "Dread",
+      "url": "https://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/",
+      "screenshot": "/images/dark-web/dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-18",
+      "published": true,
+      "tags": ["reddit", "discussion"]
+    },
+    {
+      "id": 6,
+      "name": "HellForum",
+      "url": "http://hell2ker5i3xsy6szrl2pulaqo3jhcz6pt7ffdxtuqjqiycvmlkcddqd.onion/",
+      "screenshot": "/images/dark-web/hell2ker5i3xsy6szrl2pulaqo3jhcz6pt7ffdxtuqjqiycvmlkcddqd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-29",
+      "published": true,
+      "tags": ["hacking", "dataleaks"]
+    },
+    {
+      "id": 7,
+      "name": "NZ Darknet Market Forums",
+      "url": "http://nzdnmfcf2z5pd3vwfyfy3jhwoubv6qnumdglspqhurqnuvr52khatdad.onion/",
+      "screenshot": "/images/dark-web/nzdnmfcf2z5pd3vwfyfy3jhwoubv6qnumdglspqhurqnuvr52khatdad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-09-29",
+      "published": true,
+      "tags": ["general"]
+    }
+  ]
+}

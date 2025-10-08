@@ -1,4 +1,13 @@
 {
+  "shoutout": {
+    "name": "Hariharan",
+    "role": "Threat Intel Analyst",
+    "contribution": "Provided the brilliant idea to integrate dark web forums into the project and contributed an extensive collection of dark web forum links, significantly expanding the project's scope and value.",
+    "socialMedia": {
+      "linkedin": "https://www.linkedin.com/in/hariharanmathan",
+      "github": "https://github.com/misterxcrypt"
+    }
+  },
   "contributors": [
     {
       "name": "Amjad Ali",

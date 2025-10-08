@@ -123,6 +123,34 @@
         .notification.show {
             transform: translateX(0);
         }
+
+        .forum-toggle-btn.active {
+            background: linear-gradient(135deg, #00ff41, #00cc33);
+            color: #0a0e17;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+        }
+
+        .forum-toggle-btn.active i {
+            color: #0a0e17;
+        }
+
+        .forum-toggle-btn.active #surfaceWebCount {
+            background: #0a0e17;
+            color: #00ff41;
+        }
+
+        .forum-toggle-btn.active #darkWebCount {
+            background: #0a0e17;
+            color: #ff4444;
+        }
+
+        .forum-section {
+            transition: all 0.3s ease;
+        }
+
+        .forum-section.hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -200,24 +228,42 @@
                         </div>
                     </div>
 
-                    <!-- Forums list -->
-                    <div class="mb-6">
+                    <!-- Forum Type Toggle Buttons -->
+                    <div class="flex justify-center mb-8">
+                        <div class="card p-4 rounded-lg">
+                            <div class="flex space-x-4">
+                                <button id="surfaceWebToggle" class="forum-toggle-btn active bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-6 py-3 rounded-md transition-all duration-300 flex items-center">
+                                    <i class="fas fa-globe mr-2"></i>
+                                    <span>Surface Web Forums</span>
+                                    <span id="surfaceWebCount" class="ml-2 bg-[#00ff41] text-[#0a0e17] px-2 py-1 rounded-full text-xs font-bold">0</span>
+                                </button>
+                                <button id="darkWebToggle" class="forum-toggle-btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#8a9cbc] px-6 py-3 rounded-md transition-all duration-300 flex items-center">
+                                    <i class="fas fa-mask mr-2"></i>
+                                    <span>Dark Web Forums</span>
+                                    <span id="darkWebCount" class="ml-2 bg-[#ff4444] text-white px-2 py-1 rounded-full text-xs font-bold">0</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Surface Web Forums Section -->
+                    <div class="mb-12 forum-section" id="surfaceWebSection">
                         <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
-                            <i class="fas fa-list-alt mr-3"></i>
-                            <span class="typing-effect" id="sectionTitle">Hacking Forums Database</span>
+                            <i class="fas fa-globe mr-3 text-[#00ff41]"></i>
+                            <span class="typing-effect" id="surfaceWebTitle">Surface Web Forums</span>
                         </h2>
 
-                        <!-- Tag Filter Dropdown -->
+                        <!-- Surface Web Tag Filter Dropdown -->
                         <div class="mb-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full">
                             <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
-                                <label for="tagFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Filter by Tag:</label>
-                                <select id="tagFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                <label for="surfaceWebTagFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Filter by Tag:</label>
+                                <select id="surfaceWebTagFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
                                     <option value="">All</option>
                                 </select>
                             </div>
                             <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
-                                <label for="sortFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Sort by:</label>
-                                <select id="sortFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                <label for="surfaceWebSortFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Sort by:</label>
+                                <select id="surfaceWebSortFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
                                     <option value="">Default</option>
                                     <option value="a-z">A-Z</option>
                                     <option value="z-a">Z-A</option>
@@ -225,8 +271,38 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="forumsContainer">
-                            <!-- Forum cards will be dynamically inserted here -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="surfaceWebForumsContainer">
+                            <!-- Surface Web Forum cards will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Dark Web Forums Section -->
+                    <div class="mb-6 forum-section hidden" id="darkWebSection">
+                        <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
+                            <i class="fas fa-mask mr-3 text-[#ff4444]"></i>
+                            <span class="typing-effect" id="darkWebTitle">Dark Web Forums</span>
+                        </h2>
+
+                        <!-- Dark Web Tag Filter Dropdown -->
+                        <div class="mb-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
+                                <label for="darkWebTagFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Filter by Tag:</label>
+                                <select id="darkWebTagFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
+                                <label for="darkWebSortFilter" class="text-[#8a9cbc] font-semibold whitespace-nowrap">Sort by:</label>
+                                <select id="darkWebSortFilter" class="bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41] w-full sm:w-auto">
+                                    <option value="">Default</option>
+                                    <option value="a-z">A-Z</option>
+                                    <option value="z-a">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="darkWebForumsContainer">
+                            <!-- Dark Web Forum cards will be dynamically inserted here -->
                         </div>
                     </div>
                 </main>
@@ -273,9 +349,13 @@
 
     <script>
         // Global variables
-        let forums = [];
-        let selectedTag = '';
-        let selectedSort = '';
+        let surfaceWebForums = [];
+        let darkWebForums = [];
+        let selectedSurfaceWebTag = '';
+        let selectedSurfaceWebSort = '';
+        let selectedDarkWebTag = '';
+        let selectedDarkWebSort = '';
+        let currentView = 'surface-web'; // Default view
 
         // DOM Elements
         const clientContent = document.getElementById('clientContent');
@@ -285,58 +365,74 @@
         // Initialize the application
         document.addEventListener('DOMContentLoaded', async () => {
             // Fetch forums data
-            const data = await fetchForumsData();
-            forums = data.forums;
+            const [surfaceWebData, darkWebData] = await Promise.all([
+                fetchSurfaceWebForumsData(),
+                fetchDarkWebForumsData()
+            ]);
+            
+            surfaceWebForums = surfaceWebData['surface-web-forums'] || [];
+            darkWebForums = darkWebData['dark-web-forums'] || [];
 
-            // Populate tag filter
-            populateTagFilter();
+            // Populate tag filters
+            populateSurfaceWebTagFilter();
+            populateDarkWebTagFilter();
 
-            // Render client forums
-            renderClientForums();
+            // Render forums
+            renderSurfaceWebForums();
+            renderDarkWebForums();
 
             // Initialize matrix background
             initMatrix();
 
-            // Initialize typing effect
-            initTypingEffect();
+            // Initialize typing effects
+            initTypingEffects();
 
             // Add event listeners
             setupEventListeners();
+
+            // Update stats
+            updateStats();
         });
 
-        // Fetch forums data from data.json
-        async function fetchForumsData() {
+        // Fetch surface web forums data from forums/surface-web-forums.json
+        async function fetchSurfaceWebForumsData() {
             try {
-                // Fetch data from data.json file
-                const response = await fetch('data.json');
-
-                // Check if the fetch was successful
+                const response = await fetch('forums/surface-web-forums.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-
-                // Parse the JSON response
                 const data = await response.json();
                 return data;
             } catch (error) {
-                console.error('Error fetching forums data:', error);
-
-                // Return empty forums array if fetch fails
-                return {
-                    forums: []
-                };
+                console.error('Error fetching surface web forums data:', error);
+                return { 'surface-web-forums': [] };
             }
         }
 
-        // Populate tag filter dropdown
-        function populateTagFilter() {
-            const tagFilter = document.getElementById('tagFilter');
-            const sortFilter = document.getElementById('sortFilter');
+        // Fetch dark web forums data from forums/dark-web-forums.json
+        async function fetchDarkWebForumsData() {
+            try {
+                const response = await fetch('forums/dark-web-forums.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching dark web forums data:', error);
+                return { 'dark-web-forums': [] };
+            }
+        }
+
+        // Populate surface web tag filter dropdown
+        function populateSurfaceWebTagFilter() {
+            const tagFilter = document.getElementById('surfaceWebTagFilter');
+            const sortFilter = document.getElementById('surfaceWebSortFilter');
             
             if (!tagFilter) return;
             
-            // Get all unique tags from forums
-            const allTags = Array.from(new Set(forums.flatMap(f => f.tags || [])));
+            // Get all unique tags from surface web forums
+            const allTags = Array.from(new Set(surfaceWebForums.flatMap(f => f.tags || [])));
             allTags.sort();
             allTags.forEach(tag => {
                 const option = document.createElement('option');
@@ -347,33 +443,62 @@
             
             // Add event listeners
             tagFilter.addEventListener('change', (e) => {
-                selectedTag = e.target.value;
-                renderClientForums();
+                selectedSurfaceWebTag = e.target.value;
+                renderSurfaceWebForums();
             });
             
             sortFilter.addEventListener('change', (e) => {
-                selectedSort = e.target.value;
-                renderClientForums();
+                selectedSurfaceWebSort = e.target.value;
+                renderSurfaceWebForums();
             });
         }
 
-        // Function to render forum cards (client side)
-        function renderClientForums() {
-            const container = document.getElementById('forumsContainer');
+        // Populate dark web tag filter dropdown
+        function populateDarkWebTagFilter() {
+            const tagFilter = document.getElementById('darkWebTagFilter');
+            const sortFilter = document.getElementById('darkWebSortFilter');
+            
+            if (!tagFilter) return;
+            
+            // Get all unique tags from dark web forums
+            const allTags = Array.from(new Set(darkWebForums.flatMap(f => f.tags || [])));
+            allTags.sort();
+            allTags.forEach(tag => {
+                const option = document.createElement('option');
+                option.value = tag;
+                option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+                tagFilter.appendChild(option);
+            });
+            
+            // Add event listeners
+            tagFilter.addEventListener('change', (e) => {
+                selectedDarkWebTag = e.target.value;
+                renderDarkWebForums();
+            });
+            
+            sortFilter.addEventListener('change', (e) => {
+                selectedDarkWebSort = e.target.value;
+                renderDarkWebForums();
+            });
+        }
+
+        // Function to render surface web forum cards
+        function renderSurfaceWebForums() {
+            const container = document.getElementById('surfaceWebForumsContainer');
             container.innerHTML = '';
 
             // Filter only published forums for client view
-            let publishedForums = forums.filter(forum => forum.published);
+            let publishedForums = surfaceWebForums.filter(forum => forum.published);
             
             // Filter by selected tag if any
-            if (selectedTag) {
-                publishedForums = publishedForums.filter(forum => (forum.tags || []).includes(selectedTag));
+            if (selectedSurfaceWebTag) {
+                publishedForums = publishedForums.filter(forum => (forum.tags || []).includes(selectedSurfaceWebTag));
             }
             
             // Sort forums based on selected sort option
-            if (selectedSort === 'a-z') {
+            if (selectedSurfaceWebSort === 'a-z') {
                 publishedForums.sort((a, b) => a.name.localeCompare(b.name));
-            } else if (selectedSort === 'z-a') {
+            } else if (selectedSurfaceWebSort === 'z-a') {
                 publishedForums.sort((a, b) => b.name.localeCompare(a.name));
             }
 
@@ -381,7 +506,7 @@
                 container.innerHTML = `
                     <div class="col-span-full text-center py-10">
                         <i class="fas fa-search text-4xl text-[#1e3a5f] mb-4"></i>
-                        <p class="text-[#8a9cbc]">No forums found matching your search criteria.</p>
+                        <p class="text-[#8a9cbc]">No surface web forums found matching your search criteria.</p>
                     </div>
                 `;
                 return;
@@ -404,7 +529,7 @@
                                 <i class="fas fa-user-circle text-[#8a9cbc] mr-2"></i>
                                 <span class="text-sm text-[#8a9cbc]">${forum.contributor}</span>
                             </div>
-                            <button class="view-forum-btn btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-4 py-2 rounded-md text-sm" data-id="${forum.id}">
+                            <button class="view-forum-btn btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#00ff41] px-4 py-2 rounded-md text-sm" data-id="${forum.id}" data-type="surface-web">
                                 <i class="fas fa-eye mr-1"></i> View Details
                             </button>
                         </div>
@@ -414,11 +539,79 @@
 
                 // Add event listener to view button
                 card.querySelector('.view-forum-btn').addEventListener('click', () => {
-                    openClientViewModal(forum.id);
+                    openClientViewModal(forum.id, 'surface-web');
                 });
             });
+        }
 
-            // Update stats
+        // Function to render dark web forum cards
+        function renderDarkWebForums() {
+            const container = document.getElementById('darkWebForumsContainer');
+            container.innerHTML = '';
+
+            // Filter only published forums for client view
+            let publishedForums = darkWebForums.filter(forum => forum.published);
+            
+            // Filter by selected tag if any
+            if (selectedDarkWebTag) {
+                publishedForums = publishedForums.filter(forum => (forum.tags || []).includes(selectedDarkWebTag));
+            }
+            
+            // Sort forums based on selected sort option
+            if (selectedDarkWebSort === 'a-z') {
+                publishedForums.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (selectedDarkWebSort === 'z-a') {
+                publishedForums.sort((a, b) => b.name.localeCompare(a.name));
+            }
+
+            if (publishedForums.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <i class="fas fa-search text-4xl text-[#1e3a5f] mb-4"></i>
+                        <p class="text-[#8a9cbc]">No dark web forums found matching your search criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            publishedForums.forEach(forum => {
+                const card = document.createElement('div');
+                card.className = 'card rounded-lg overflow-hidden';
+                card.innerHTML = `
+                    <div class="h-40 overflow-hidden">
+                        <img src="${forum.screenshot}" alt="${forum.name}" class="w-full h-full object-cover screenshot">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">${forum.name}</h3>
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            ${(forum.tags || []).map(tag => `<span class='inline-block bg-[#1e3a5f] text-[#ff4444] text-xs px-2 py-1 rounded-full border border-[#ff4444]'>${tag}</span>`).join(' ')}
+                        </div>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-circle text-[#8a9cbc] mr-2"></i>
+                                <span class="text-sm text-[#8a9cbc]">${forum.contributor}</span>
+                            </div>
+                            <button class="view-forum-btn btn bg-[#1e3a5f] hover:bg-[#2a4d7d] text-[#ff4444] px-4 py-2 rounded-md text-sm" data-id="${forum.id}" data-type="dark-web">
+                                <i class="fas fa-eye mr-1"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Add event listener to view button
+                card.querySelector('.view-forum-btn').addEventListener('click', () => {
+                    openClientViewModal(forum.id, 'dark-web');
+                });
+            });
+        }
+
+        // Function to update stats
+        function updateStats() {
+            const allForums = [...surfaceWebForums, ...darkWebForums];
+            const publishedForums = allForums.filter(forum => forum.published);
+            
+            // Update total forums count
             document.getElementById('clientTotalForums').textContent = publishedForums.length;
 
             // Count unique contributors
@@ -426,27 +619,67 @@
             document.getElementById('clientTotalContributors').textContent = uniqueContributors.length;
 
             // Set last updated date
-            // const lastUpdated = new Date().toLocaleDateString('en-US', {
-            //     year: 'numeric',
-            //     month: 'short',
-            //     day: 'numeric',
-            //     hour: "numeric",
-            //     minute: "numeric",
-            //     second: "numeric"
-            // });
-
             let lastUpdated = "";
-
-            forums.forEach((forum)=>{
+            allForums.forEach((forum) => {
                 lastUpdated = lastUpdated < forum.dateAdded ? forum.dateAdded : lastUpdated;
             });
-
             document.getElementById('clientLastUpdated').textContent = lastUpdated;
+
+            // Update toggle button counts
+            const publishedSurfaceWebForums = surfaceWebForums.filter(forum => forum.published);
+            const publishedDarkWebForums = darkWebForums.filter(forum => forum.published);
+            
+            document.getElementById('surfaceWebCount').textContent = publishedSurfaceWebForums.length;
+            document.getElementById('darkWebCount').textContent = publishedDarkWebForums.length;
+        }
+
+        // Function to switch to Surface Web Forums view
+        function switchToSurfaceWeb() {
+            currentView = 'surface-web';
+            
+            // Update button states
+            document.getElementById('surfaceWebToggle').classList.add('active');
+            document.getElementById('darkWebToggle').classList.remove('active');
+            
+            // Show/hide sections
+            document.getElementById('surfaceWebSection').classList.remove('hidden');
+            document.getElementById('darkWebSection').classList.add('hidden');
+            
+            // Update button colors
+            document.getElementById('surfaceWebToggle').classList.remove('text-[#8a9cbc]');
+            document.getElementById('surfaceWebToggle').classList.add('text-[#00ff41]');
+            document.getElementById('darkWebToggle').classList.remove('text-[#ff4444]');
+            document.getElementById('darkWebToggle').classList.add('text-[#8a9cbc]');
+        }
+
+        // Function to switch to Dark Web Forums view
+        function switchToDarkWeb() {
+            currentView = 'dark-web';
+            
+            // Update button states
+            document.getElementById('darkWebToggle').classList.add('active');
+            document.getElementById('surfaceWebToggle').classList.remove('active');
+            
+            // Show/hide sections
+            document.getElementById('darkWebSection').classList.remove('hidden');
+            document.getElementById('surfaceWebSection').classList.add('hidden');
+            
+            // Update button colors
+            document.getElementById('darkWebToggle').classList.remove('text-[#8a9cbc]');
+            document.getElementById('darkWebToggle').classList.add('text-[#ff4444]');
+            document.getElementById('surfaceWebToggle').classList.remove('text-[#00ff41]');
+            document.getElementById('surfaceWebToggle').classList.add('text-[#8a9cbc]');
         }
 
         // Function to open client view modal
-        function openClientViewModal(forumId) {
-            const forum = forums.find(f => f.id === forumId);
+        function openClientViewModal(forumId, forumType) {
+            let forum;
+            if (forumType === 'surface-web') {
+                forum = surfaceWebForums.find(f => f.id === forumId);
+            } else if (forumType === 'dark-web') {
+                forum = darkWebForums.find(f => f.id === forumId);
+            }
+            
             if (!forum) return;
 
             document.getElementById('viewForumName').textContent = forum.name;
@@ -473,9 +706,9 @@
                 viewForumModal.classList.add('hidden');
             });
 
-            // Total Forums card click - redirect to GitHub data.json
+            // Total Forums card click - redirect to GitHub surface-web-forums.json
             document.getElementById('totalForumsCard').addEventListener('click', () => {
-                window.open('https://github.com/amjadali-110/forums-bank/blob/main/data.json', '_blank');
+                window.open('https://github.com/amjadali-110/forums-bank/blob/main/surface-web-forums.json', '_blank');
             });
 
             // Contributors card click - redirect to contributors page
@@ -483,12 +716,22 @@
                 window.location.href = 'contributors.html';
             });
 
+            // Toggle buttons functionality
+            document.getElementById('surfaceWebToggle').addEventListener('click', () => {
+                switchToSurfaceWeb();
+            });
+
+            document.getElementById('darkWebToggle').addEventListener('click', () => {
+                switchToDarkWeb();
+            });
+
             // Search functionality
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase();
 
                 if (searchTerm.length > 0) {
-                    const filteredForums = forums.filter(forum =>
+                    // Filter surface web forums
+                    const filteredSurfaceWebForums = surfaceWebForums.filter(forum =>
                         forum.published && (
                             forum.name.toLowerCase().includes(searchTerm) ||
                             forum.url.toLowerCase().includes(searchTerm) ||
@@ -496,13 +739,38 @@
                         )
                     );
 
-                    // Update forums array temporarily for rendering
-                    const originalForums = [...forums];
-                    forums = filteredForums;
-                    renderClientForums();
-                    forums = originalForums; // Restore original forums
+                    // Filter dark web forums
+                    const filteredDarkWebForums = darkWebForums.filter(forum =>
+                        forum.published && (
+                            forum.name.toLowerCase().includes(searchTerm) ||
+                            forum.url.toLowerCase().includes(searchTerm) ||
+                            forum.contributor.toLowerCase().includes(searchTerm)
+                        )
+                    );
+
+                    // Update forums arrays temporarily for rendering
+                    const originalSurfaceWebForums = [...surfaceWebForums];
+                    const originalDarkWebForums = [...darkWebForums];
+                    
+                    surfaceWebForums = filteredSurfaceWebForums;
+                    darkWebForums = filteredDarkWebForums;
+                    
+                    // Only render the currently visible section
+                    if (currentView === 'surface-web') {
+                        renderSurfaceWebForums();
+                    } else {
+                        renderDarkWebForums();
+                    }
+                    updateStats();
+                    
+                    // Restore original forums
+                    surfaceWebForums = originalSurfaceWebForums;
+                    darkWebForums = originalDarkWebForums;
                 } else {
-                    renderClientForums();
+                    // Render both sections when search is cleared
+                    renderSurfaceWebForums();
+                    renderDarkWebForums();
+                    updateStats();
                 }
             });
         }
@@ -552,24 +820,43 @@
             });
         }
 
-        // Function to initialize typing effect
-        function initTypingEffect() {
-            const sectionTitle = document.getElementById('sectionTitle');
-            const text = sectionTitle.textContent;
-            sectionTitle.textContent = '';
+        // Function to initialize typing effects
+        function initTypingEffects() {
+            // Surface Web title typing effect
+            const surfaceWebTitle = document.getElementById('surfaceWebTitle');
+            const surfaceWebText = surfaceWebTitle.textContent;
+            surfaceWebTitle.textContent = '';
 
             let i = 0;
             const typingSpeed = 100;
 
-            function typeWriter() {
-                if (i < text.length) {
-                    sectionTitle.textContent += text.charAt(i);
+            function typeWriterSurfaceWeb() {
+                if (i < surfaceWebText.length) {
+                    surfaceWebTitle.textContent += surfaceWebText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, typingSpeed);
+                    setTimeout(typeWriterSurfaceWeb, typingSpeed);
                 }
             }
 
-            setTimeout(typeWriter, 500);
+            setTimeout(typeWriterSurfaceWeb, 500);
+
+            // Dark Web title typing effect
+            setTimeout(() => {
+                const darkWebTitle = document.getElementById('darkWebTitle');
+                const darkWebText = darkWebTitle.textContent;
+                darkWebTitle.textContent = '';
+
+                let j = 0;
+                function typeWriterDarkWeb() {
+                    if (j < darkWebText.length) {
+                        darkWebTitle.textContent += darkWebText.charAt(j);
+                        j++;
+                        setTimeout(typeWriterDarkWeb, typingSpeed);
+                    }
+                }
+
+                typeWriterDarkWeb();
+            }, 2000);
         }
 
         // Function to show notification

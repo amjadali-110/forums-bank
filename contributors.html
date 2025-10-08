@@ -206,6 +206,17 @@
                     </div>
                 </div>
 
+                <!-- ShoutOut Section -->
+                <div class="mb-8" id="shoutoutSection">
+                    <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
+                        <i class="fas fa-star mr-3 text-yellow-400"></i>
+                        <span class="typing-effect" id="shoutoutTitle">ShoutOut</span>
+                    </h2>
+                    <div id="shoutoutContainer">
+                        <!-- ShoutOut content will be dynamically inserted here -->
+                    </div>
+                </div>
+
                 <!-- Contributors list -->
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold title-font mb-6 flex items-center">
@@ -225,6 +236,15 @@
                         Contribute a Forum
                     </h2>
                     <form id="contributeForm" class="space-y-4">
+                        <div>
+                            <label class="block mb-1 text-[#8a9cbc]" for="forumType">Forum Type</label>
+                            <select id="forumType" name="forumType" required class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
+                                <option value="">Select Forum Type</option>
+                                <option value="surface-web">Surface Web Forum</option>
+                                <option value="dark-web">Dark Web Forum</option>
+                            </select>
+                            <p class="text-xs text-[#8a9cbc] mt-1">Choose whether this is a surface web or dark web forum</p>
+                        </div>
                         <div>
                             <label class="block mb-1 text-[#8a9cbc]" for="forumName">Forum Name</label>
                             <input type="text" id="forumName" name="forumName" required class="w-full bg-[#0a0e17] border border-[#1e3a5f] text-[#00ff41] px-4 py-2 rounded-md focus:outline-none focus:border-[#00ff41]">
@@ -314,6 +334,7 @@
         let forums = [];
         let contributors = [];
         let contributorsData = [];
+        let shoutoutData = null;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', async () => {
@@ -324,9 +345,13 @@
             // Fetch contributors data
             const contributorsResponse = await fetchContributorsData();
             contributorsData = contributorsResponse.contributors;
+            shoutoutData = contributorsResponse.shoutout;
 
             // Process contributors data
             processContributorsData();
+
+            // Render shoutout
+            renderShoutout();
 
             // Render contributors
             renderContributors();
@@ -341,15 +366,30 @@
             setupEventListeners();
         });
 
-        // Fetch forums data from data.json
+        // Fetch forums data from forums JSON files
         async function fetchForumsData() {
             try {
-                const response = await fetch('data.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                const [surfaceWebResponse, darkWebResponse] = await Promise.all([
+                    fetch('forums/surface-web-forums.json'),
+                    fetch('forums/dark-web-forums.json')
+                ]);
+                
+                if (!surfaceWebResponse.ok || !darkWebResponse.ok) {
+                    throw new Error(`HTTP error! Status: ${surfaceWebResponse.status}, ${darkWebResponse.status}`);
                 }
-                const data = await response.json();
-                return data;
+                
+                const [surfaceWebData, darkWebData] = await Promise.all([
+                    surfaceWebResponse.json(),
+                    darkWebResponse.json()
+                ]);
+                
+                // Combine both forum arrays
+                const allForums = [
+                    ...(surfaceWebData['surface-web-forums'] || []),
+                    ...(darkWebData['dark-web-forums'] || [])
+                ];
+                
+                return { forums: allForums };
             } catch (error) {
                 console.error('Error fetching forums data:', error);
                 return { forums: [] };
@@ -383,9 +423,81 @@
             });
 
             // Convert to array and sort by contribution count
+            // Exclude shoutout person from regular contributors since they're in ShoutOut section
+            const shoutoutName = shoutoutData ? shoutoutData.name : null;
             contributors = Object.entries(contributorCounts)
+                .filter(([name]) => name !== shoutoutName)
                 .map(([name, count]) => ({ name, count }))
                 .sort((a, b) => b.count - a.count);
+        }
+
+        // Function to render shoutout section
+        function renderShoutout() {
+            const container = document.getElementById('shoutoutContainer');
+            
+            if (!shoutoutData) {
+                container.innerHTML = '';
+                return;
+            }
+
+            // Calculate contribution count for shoutout person
+            const contributionCount = forums.filter(forum => 
+                forum.published && forum.contributor === shoutoutData.name
+            ).length;
+
+            // Generate social media icons
+            let socialMediaHtml = '';
+            if (shoutoutData.socialMedia) {
+                socialMediaHtml = '<div class="flex space-x-3">';
+                if (shoutoutData.socialMedia.github) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.github}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="GitHub"><i class="fab fa-github text-xl"></i></a>`;
+                }
+                if (shoutoutData.socialMedia.linkedin) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.linkedin}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="LinkedIn"><i class="fab fa-linkedin text-xl"></i></a>`;
+                }
+                if (shoutoutData.socialMedia.youtube) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.youtube}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="YouTube"><i class="fab fa-youtube text-xl"></i></a>`;
+                }
+                if (shoutoutData.socialMedia.website) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.website}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Website"><i class="fas fa-globe text-xl"></i></a>`;
+                }
+                if (shoutoutData.socialMedia.twitter) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.twitter}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Twitter"><i class="fab fa-twitter text-xl"></i></a>`;
+                }
+                if (shoutoutData.socialMedia.instagram) {
+                    socialMediaHtml += `<a href="${shoutoutData.socialMedia.instagram}" target="_blank" class="text-[#8a9cbc] hover:text-[#00ff41] transition-colors" title="Instagram"><i class="fab fa-instagram text-xl"></i></a>`;
+                }
+                socialMediaHtml += '</div>';
+            }
+
+            container.innerHTML = `
+                <div class="card p-6 rounded-lg border-2 border-yellow-400 bg-gradient-to-r from-yellow-400/10 to-yellow-400/5">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-400/20 p-4 rounded-full mr-4">
+                            <i class="fas fa-crown text-3xl text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-yellow-400">${shoutoutData.name}</h3>
+                            <p class="text-[#8a9cbc] text-sm">${shoutoutData.role}</p>
+                        </div>
+                        <div class="text-right ml-auto">
+                            <p class="text-[#8a9cbc] text-sm">Contribution</p>
+                            <p class="text-[#00ff41] text-sm">Special Recognition</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <p class="text-[#8a9cbc] text-sm">Forums Added</p>
+                            <h4 class="text-2xl font-bold text-yellow-400">${contributionCount}</h4>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-[#8a9cbc] text-sm mb-2">Contribution Details:</p>
+                        <p class="text-[#00ff41]">${shoutoutData.contribution}</p>
+                    </div>
+                    ${socialMediaHtml}
+                </div>
+            `;
         }
 
         // Function to render contributor cards
@@ -536,22 +648,41 @@
 
         // Function to initialize typing effect
         function initTypingEffect() {
-            const sectionTitle = document.getElementById('sectionTitle');
-            const text = sectionTitle.textContent;
-            sectionTitle.textContent = '';
+            // ShoutOut title typing effect
+            const shoutoutTitle = document.getElementById('shoutoutTitle');
+            const shoutoutText = shoutoutTitle.textContent;
+            shoutoutTitle.textContent = '';
 
             let i = 0;
             const typingSpeed = 100;
 
-            function typeWriter() {
-                if (i < text.length) {
-                    sectionTitle.textContent += text.charAt(i);
+            function typeWriterShoutout() {
+                if (i < shoutoutText.length) {
+                    shoutoutTitle.textContent += shoutoutText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, typingSpeed);
+                    setTimeout(typeWriterShoutout, typingSpeed);
                 }
             }
 
-            setTimeout(typeWriter, 500);
+            setTimeout(typeWriterShoutout, 500);
+
+            // Contributors section title typing effect
+            setTimeout(() => {
+                const sectionTitle = document.getElementById('sectionTitle');
+                const text = sectionTitle.textContent;
+                sectionTitle.textContent = '';
+
+                let j = 0;
+                function typeWriterContributors() {
+                    if (j < text.length) {
+                        sectionTitle.textContent += text.charAt(j);
+                        j++;
+                        setTimeout(typeWriterContributors, typingSpeed);
+                    }
+                }
+
+                typeWriterContributors();
+            }, 2000);
         }
 
         // Function to setup event listeners
@@ -568,6 +699,7 @@
             // Contribute form submit
             document.getElementById('contributeForm').addEventListener('submit', function(e) {
                 e.preventDefault();
+                const forumType = document.getElementById('forumType').value;
                 const name = document.getElementById('forumName').value.trim();
                 const url = document.getElementById('forumUrl').value.trim();
                 const contributor = document.getElementById('contributorName').value.trim();
@@ -575,7 +707,7 @@
                 const socialMediaProfile = document.getElementById('socialMediaProfile').value.trim();
                 
                 // Build issue body with new fields
-                let issueBody = `**Forum Name:** ${name}\n**Forum URL:** ${url}`;
+                let issueBody = `**Forum Type:** ${forumType === 'surface-web' ? 'Surface Web Forum' : 'Dark Web Forum'}\n**Forum Name:** ${name}\n**Forum URL:** ${url}`;
                 
                 // Add forum categories if selected (right after Forum URL)
                 if (forumCategory.length > 0) {
@@ -593,7 +725,8 @@
                 issueBody += `\n\n**Screenshot:**\nPlease drag and drop your screenshot image here or use the image upload feature in GitHub.\n\n---\n\n**Instructions:**\n1. Drag and drop your screenshot image into this issue description\n2. Or click the image upload button in the GitHub editor\n3. The image will be automatically uploaded and embedded`;
                 
                 // Create GitHub issue
-                const issueTitle = encodeURIComponent(`Forum Contribution: ${name}`);
+                const forumTypeLabel = forumType === 'surface-web' ? 'Surface Web Forum' : 'Dark Web Forum';
+                const issueTitle = encodeURIComponent(`${forumTypeLabel} Contribution: ${name}`);
                 const encodedIssueBody = encodeURIComponent(issueBody);
                 const githubIssueUrl = `https://github.com/amjadali-110/forums-bank/issues/new?title=${issueTitle}&body=${encodedIssueBody}`;
                 
