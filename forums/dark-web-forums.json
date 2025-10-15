@@ -69,6 +69,86 @@
       "dateAdded": "2025-09-29",
       "published": true,
       "tags": ["general"]
+    },
+    {
+      "id": 8,
+      "name": "DamageLib",
+      "url": "http://damaga377vyvydeqeuigxvl6g5sbmipoxb5nne6gpj3sisbnslbhvrqd.onion/",
+      "screenshot": "/images/dark-web/damaga377vyvydeqeuigxvl6g5sbmipoxb5nne6gpj3sisbnslbhvrqd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "malware", "cracking", "osint"]
+    },
+    {
+      "id": 9,
+      "name": "Cloak",
+      "url": "http://cloak2yayxbqywine5h5qytcbave7bpe6o4u2wfqkay4u2hmjisdtvad.onion/",
+      "screenshot": "/images/dark-web/cloak2yayxbqywine5h5qytcbave7bpe6o4u2wfqkay4u2hmjisdtvad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "opsec", "drugs", "markets"]
+    },
+    {
+      "id": 10,
+      "name": "Verified",
+      "url": "http://verified3vr2kdbnza6c3e5ak4z5xmtti4hx36dfg3kbi6pwekztvsqd.onion/",
+      "screenshot": "/images/dark-web/verified3vr2kdbnza6c3e5ak4z5xmtti4hx36dfg3kbi6pwekztvsqd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "russian"]
+    },
+    {
+      "id": 11,
+      "name": "Suprbay",
+      "url": "http://suprbaydvdcaynfo4dgdzgxb4zuso7rftlil5yg5kqjefnw4wq4ulcad.onion/",
+      "screenshot": "/images/dark-web/suprbaydvdcaynfo4dgdzgxb4zuso7rftlil5yg5kqjefnw4wq4ulcad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["piratebay", "general", "piracy"]
+    },
+    {
+      "id": 12,
+      "name": "Defcon",
+      "url": "https://ezdhgsy2aw7zg54z6dqsutrduhl22moami5zv2zt6urr6vub7gs6wfad.onion/",
+      "screenshot": "/images/dark-web/ezdhgsy2aw7zg54z6dqsutrduhl22moami5zv2zt6urr6vub7gs6wfad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["hacking", "defcon"]
+    },
+    {
+      "id": 13,
+      "name": "ZZZchan",
+      "url": "http://crghlabr45r5pqkgnbgehywk5nxutdks5iss7tabyux5psikqqjirryd.onion/",
+      "screenshot": "/images/dark-web/crghlabr45r5pqkgnbgehywk5nxutdks5iss7tabyux5psikqqjirryd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "board"]
+    },
+    {
+      "id": 14,
+      "name": "8chan",
+      "url": "http://alephchvkipd2houttjirmgivro5pxullvcgm4c47ptm7mhubbja6kad.onion/",
+      "screenshot": "/images/dark-web/alephchvkipd2houttjirmgivro5pxullvcgm4c47ptm7mhubbja6kad.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "board"]
+    },
+    {
+      "id": 15,
+      "name": "Exploit.in",
+      "url": "https://exploitivzcm5dawzhe6c32bbylyggbjvh5dyvsvb5lkuz5ptmunkmqd.onion/",
+      "screenshot": "/images/dark-web/exploitivzcm5dawzhe6c32bbylyggbjvh5dyvsvb5lkuz5ptmunkmqd.png",
+      "contributor": "Hariharan",
+      "dateAdded": "2025-10-14",
+      "published": true,
+      "tags": ["general", "hacking"]
     }
   ]
 }
